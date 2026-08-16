@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Panel, Stat, Tag } from "@/components/wg/ui";
+import { Panel, Stat, Tag, KeyVal } from "@/components/wg/ui";
 import { MAINTENANCE } from "@/lib/wildguard-data";
 
 export const Route = createFileRoute("/_app/maintenance")({
