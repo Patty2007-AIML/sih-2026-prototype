@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Panel, KeyVal, Tag } from "@/components/wg/ui";
+import feedImage from "@/assets/animal-detection.png.asset.json";
 
 export const Route = createFileRoute("/_app/live-camera")({
   head: () => ({
@@ -28,25 +29,19 @@ function LiveCamera() {
         <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border bg-black">
           <img
             src={feedImage.url}
-            alt="Live edge camera frame showing animals detected crossing the highway carriageway"
+            alt="Edge camera frame with two animals detected crossing the highway carriageway"
             className="absolute inset-0 size-full object-cover"
           />
 
-          <div className="absolute inset-x-[6%] bottom-[6%] h-[34%] rounded border-2 border-primary/70">
-            <span className="absolute -top-5 left-0 font-mono text-[10px] tracking-widest text-primary">ROAD ROI</span>
-          </div>
-          <div className="absolute right-[10%] bottom-[10%] h-[30%] w-[28%] rounded border-2 border-warning/70">
-            <span className="absolute -top-5 right-0 font-mono text-[10px] tracking-widest text-warning">
-              CONFLICT ZONE
-            </span>
-          </div>
-
-          <div className="absolute top-3 right-4 rounded bg-background/60 px-2 py-1 text-right font-mono text-[11px] text-foreground/90">
+          <div className="absolute top-3 left-4 rounded bg-background/60 px-2 py-1 font-mono text-[11px] text-foreground/90">
             <p>14:37:42</p>
             <p className="text-muted-foreground">25-05-2026</p>
           </div>
-        </div>
 
+          <div className="absolute right-4 bottom-3 rounded bg-background/60 px-2 py-1 font-mono text-[10px] tracking-widest text-primary">
+            ROAD ROI ACTIVE • 2 TRACKS
+          </div>
+        </div>
       </Panel>
 
       <div className="space-y-4">
