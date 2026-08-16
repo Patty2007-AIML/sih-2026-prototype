@@ -36,7 +36,7 @@ const PROFILE = [
 
 function AIModel() {
   const [active, setActive] = useState(0);
-  const scenario = SCENARIOS[active];
+  const scenario = SCENARIOS[active] ?? SCENARIOS[0]!;
 
   return (
     <div className="space-y-4">
