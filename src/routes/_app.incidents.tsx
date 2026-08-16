@@ -82,6 +82,47 @@ function Incidents() {
           </table>
         </div>
       </Panel>
+
+      <Panel title="Incident Details — #WG-2048">
+        <div className="grid gap-5 lg:grid-cols-[300px_1fr]">
+          <div>
+            <div className="flex aspect-video items-center justify-center rounded-lg border border-border bg-muted/40 text-5xl">
+              🐘
+            </div>
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              Event-triggered evidence clip • 12 seconds • stored locally
+            </p>
+          </div>
+          <div>
+            <div className="flex items-center gap-3">
+              <Tag label="CRITICAL" />
+              <p className="text-sm font-medium">Elephant Detected</p>
+            </div>
+            <div className="mt-3 grid gap-x-8 sm:grid-cols-2">
+              <KeyVal k="Event time" v="14:37:42" />
+              <KeyVal k="Node / heartbeat" v="N04 • 4 s ago" />
+              <KeyVal k="Road occupancy" v="Carriageway ROI" tone="CRITICAL" />
+              <KeyVal k="Confidence" v="94.7%" tone="ok" />
+              <KeyVal k="Trajectory" v="Eastbound conflict" />
+              <KeyVal k="Time to conflict" v="6.8 seconds" tone="CRITICAL" />
+              <KeyVal k="Alert propagation" v="N03, N02 acknowledged" tone="ok" />
+              <KeyVal k="Privacy mode" v="Event clip only" />
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <button className="rounded-md bg-primary px-3 py-1.5 font-mono text-[10px] tracking-widest text-primary-foreground transition-colors hover:bg-primary/90">
+                MARK VERIFIED
+              </button>
+              <button className="rounded-md border border-border px-3 py-1.5 font-mono text-[10px] tracking-widest text-muted-foreground transition-colors hover:border-destructive/50 hover:text-destructive">
+                FALSE ALERT
+              </button>
+              <button className="rounded-md border border-border px-3 py-1.5 font-mono text-[10px] tracking-widest text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                EXPORT RECORD
+              </button>
+            </div>
+          </div>
+        </div>
+      </Panel>
     </div>
   );
 }
+
