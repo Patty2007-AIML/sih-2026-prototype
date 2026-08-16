@@ -1,11 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Activity, AlertTriangle, Siren, Gauge, Radio, Wifi, Eye, CheckCircle2 } from "lucide-react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  XAxis,
+} from "recharts";
 import { Panel, Stat } from "@/components/wg/ui";
 
 export const Route = createFileRoute("/_app/analytics")({
   head: () => ({
     meta: [
       { title: "Analytics — WildGuard" },
-      { name: "description", content: "Species mix, crossing time-of-day distribution and corridor risk trends." },
+      { name: "description", content: "Detection trends, incident history and corridor hazard class distribution." },
       { property: "og:title", content: "Analytics — WildGuard" },
       { property: "og:description", content: "Corridor analytics for wildlife crossings and warning performance." },
     ],
@@ -13,62 +26,150 @@ export const Route = createFileRoute("/_app/analytics")({
   component: Analytics,
 });
 
-const HOURS = [
-  { h: "00", v: 42 }, { h: "02", v: 55 }, { h: "04", v: 71 }, { h: "06", v: 38 },
-  { h: "08", v: 21 }, { h: "10", v: 14 }, { h: "12", v: 11 }, { h: "14", v: 18 },
-  { h: "16", v: 29 }, { h: "18", v: 64 }, { h: "20", v: 88 }, { h: "22", v: 76 },
+const DETECTIONS = [
+  { d: "F", v: 62 },
+  { d: "S", v: 84 },
+  { d: "S", v: 71 },
+  { d: "M", v: 96 },
+  { d: "T", v: 88 },
+  { d: "W", v: 108 },
+  { d: "T", v: 99 },
 ];
 
-const SPECIES = [
-  { name: "Deer", pct: 41, tone: "bg-primary" },
-  { name: "Wild Boar", pct: 24, tone: "bg-warning" },
-  { name: "Elephant", pct: 17, tone: "bg-destructive" },
-  { name: "Nilgai", pct: 11, tone: "bg-info" },
-  { name: "Other", pct: 7, tone: "bg-muted-foreground" },
+const OVER_TIME = [
+  { day: "09 May", detections: 42, warnings: 22, critical: 9 },
+  { day: "10 May", detections: 58, warnings: 30, critical: 13 },
+  { day: "11 May", detections: 61, warnings: 32, critical: 14 },
+  { day: "12 May", detections: 86, warnings: 48, critical: 21 },
+  { day: "13 May", detections: 63, warnings: 34, critical: 15 },
+  { day: "14 May", detections: 74, warnings: 41, critical: 18 },
+  { day: "15 May", detections: 68, warnings: 39, critical: 17 },
+];
+
+const CLASSES = [
+  { name: "Deer / Nilgai", value: 45, color: "oklch(0.74 0.19 145)" },
+  { name: "Elephant", value: 20, color: "oklch(0.68 0.11 235)" },
+  { name: "Wild Boar", value: 15, color: "oklch(0.72 0.17 55)" },
+  { name: "Cattle / Dog", value: 20, color: "oklch(0.85 0.16 92)" },
 ];
 
 function Analytics() {
-  const max = Math.max(...HOURS.map((x) => x.v));
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Stat label="Detections (7d)" value="1,284" hint="+8.4% vs previous week" />
-        <Stat label="Critical Warnings" value="46" hint="Carriageway occupancy" tone="destructive" />
-        <Stat label="Avg Warning Lead" value="7.4 s" hint="Before conflict point" tone="info" />
-        <Stat label="False Positive Rate" value="3.1%" hint="Reviewed clips" tone="warning" />
+        <Stat label="Hazard Recall" value="92.1%" hint="By corridor test split" icon={<Activity className="size-5" />} />
+        <Stat
+          label="False Critical Rate"
+          value="0.14/h"
+          hint="Per camera-hour"
+          tone="destructive"
+          icon={<Siren className="size-5" />}
+        />
+        <Stat
+          label="Night / Rain Recall"
+          value="88.6%"
+          hint="Reported separately"
+          tone="warning"
+          icon={<AlertTriangle className="size-5" />}
+        />
+        <Stat
+          label="End-to-End Latency"
+          value="87 ms"
+          hint="Visible hazard to beacon"
+          tone="info"
+          icon={<Gauge className="size-5" />}
+        />
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_340px]">
-        <Panel title="Crossing Activity by Hour" action={<span className="font-mono text-[10px] tracking-widest text-muted-foreground">LAST 7 DAYS</span>}>
-          <div className="flex h-64 items-end gap-2">
-            {HOURS.map((x) => (
-              <div key={x.h} className="flex flex-1 flex-col items-center gap-2">
-                <span className="font-mono text-[10px] text-muted-foreground">{x.v}</span>
-                <div
-                  className="w-full rounded-t bg-primary/70"
-                  style={{ height: `${(x.v / max) * 100}%` }}
+      <div className="grid gap-4 xl:grid-cols-[340px_1fr_360px]">
+        <Panel title="Detections — Last 7 Days" bodyClass="p-4">
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={DETECTIONS} margin={{ top: 8, right: 4, bottom: 0, left: 4 }}>
+                <XAxis
+                  dataKey="d"
+                  tickLine={false}
+                  axisLine={false}
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 11 }}
                 />
-                <span className="font-mono text-[10px] text-muted-foreground">{x.h}</span>
-              </div>
-            ))}
+                <Bar dataKey="v" radius={[3, 3, 0, 0]} fill="oklch(0.76 0.13 175)" barSize={14} />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </Panel>
 
-        <Panel title="Species Distribution">
-          <div className="space-y-4">
-            {SPECIES.map((s) => (
-              <div key={s.name}>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground">{s.name}</span>
-                  <span className="font-mono">{s.pct}%</span>
-                </div>
-                <div className="mt-1.5 h-2 w-full rounded-full bg-muted">
-                  <div className={`h-2 rounded-full ${s.tone}`} style={{ width: `${s.pct}%` }} />
-                </div>
-              </div>
-            ))}
+        <Panel title="Incidents Over Time" bodyClass="p-4">
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={OVER_TIME} margin={{ top: 8, right: 8, bottom: 0, left: 8 }}>
+                <CartesianGrid stroke="var(--color-border)" vertical={false} />
+                <XAxis
+                  dataKey="day"
+                  tickLine={false}
+                  axisLine={false}
+                  tick={{ fill: "var(--color-muted-foreground)", fontSize: 10 }}
+                />
+                <Line type="monotone" dataKey="detections" stroke="oklch(0.68 0.11 235)" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="warnings" stroke="oklch(0.63 0.2 25)" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="critical" stroke="oklch(0.85 0.16 92)" strokeWidth={2} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </Panel>
+
+        <Panel title="Corridor Hazard Classes" bodyClass="p-4">
+          <div className="flex items-center gap-4">
+            <div className="relative h-52 flex-1">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={CLASSES}
+                    dataKey="value"
+                    innerRadius="66%"
+                    outerRadius="92%"
+                    paddingAngle={1}
+                    stroke="none"
+                  >
+                    {CLASSES.map((c) => (
+                      <Cell key={c.name} fill={c.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+                <p className="font-mono text-2xl font-semibold">103</p>
+                <p className="label-xs text-[9px]">Verified</p>
+              </div>
+            </div>
+            <ul className="space-y-2">
+              {CLASSES.map((c) => (
+                <li key={c.name} className="flex items-center gap-2 text-[11px]">
+                  <span className="size-2.5 rounded-sm" style={{ backgroundColor: c.color }} />
+                  <span className="flex-1 text-muted-foreground">{c.name}</span>
+                  <span className="font-mono">{c.value}%</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Panel>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <Stat label="Median Warning Lead" value="7.4 s" hint="Calibrated conflict point" icon={<Radio className="size-5" />} />
+        <Stat
+          label="Connectivity Resilience"
+          value="100%"
+          hint="Offline safety tests passed"
+          tone="info"
+          icon={<Wifi className="size-5" />}
+        />
+        <Stat label="Verified Events" value="1,106" hint="Officer-reviewed" icon={<Eye className="size-5" />} />
+        <Stat
+          label="Node Availability"
+          value="98.7%"
+          hint="Degraded shown explicitly"
+          icon={<CheckCircle2 className="size-5" />}
+        />
       </div>
     </div>
   );
