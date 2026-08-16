@@ -25,7 +25,15 @@ function Reports() {
         <Stat label="Next Auto-Run" value="Mon 06:00" hint="Weekly summary" tone="warning" />
       </div>
 
-      <Panel title="Generated Reports" bodyClass="p-0">
+      <Panel
+        title="Government Report Center"
+        action={
+          <button className="rounded-md bg-primary px-3 py-1.5 font-mono text-[10px] tracking-widest text-primary-foreground transition-colors hover:bg-primary/90">
+            GENERATE REPORT
+          </button>
+        }
+        bodyClass="p-0"
+      >
         <ul>
           {REPORTS.map((r) => (
             <li
