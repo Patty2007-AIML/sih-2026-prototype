@@ -10,33 +10,249 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as AppAiModelRouteImport } from './routes/_app.ai-model'
+import { Route as AppAlertsRouteImport } from './routes/_app.alerts'
+import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
+import { Route as AppCamerasRouteImport } from './routes/_app.cameras'
+import { Route as AppCorridorMapRouteImport } from './routes/_app.corridor-map'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppDriverWarningRouteImport } from './routes/_app.driver-warning'
+import { Route as AppHelpRouteImport } from './routes/_app.help'
+import { Route as AppHotspotsRouteImport } from './routes/_app.hotspots'
+import { Route as AppIncidentsRouteImport } from './routes/_app.incidents'
+import { Route as AppLiveCameraRouteImport } from './routes/_app.live-camera'
+import { Route as AppMaintenanceRouteImport } from './routes/_app.maintenance'
+import { Route as AppNodesRouteImport } from './routes/_app.nodes'
+import { Route as AppPilotPlanRouteImport } from './routes/_app.pilot-plan'
+import { Route as AppReportsRouteImport } from './routes/_app.reports'
+import { Route as AppRiskIntelligenceRouteImport } from './routes/_app.risk-intelligence'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAiModelRoute = AppAiModelRouteImport.update({
+  id: '/ai-model',
+  path: '/ai-model',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAlertsRoute = AppAlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCamerasRoute = AppCamerasRouteImport.update({
+  id: '/cameras',
+  path: '/cameras',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCorridorMapRoute = AppCorridorMapRouteImport.update({
+  id: '/corridor-map',
+  path: '/corridor-map',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDriverWarningRoute = AppDriverWarningRouteImport.update({
+  id: '/driver-warning',
+  path: '/driver-warning',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHelpRoute = AppHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHotspotsRoute = AppHotspotsRouteImport.update({
+  id: '/hotspots',
+  path: '/hotspots',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppIncidentsRoute = AppIncidentsRouteImport.update({
+  id: '/incidents',
+  path: '/incidents',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLiveCameraRoute = AppLiveCameraRouteImport.update({
+  id: '/live-camera',
+  path: '/live-camera',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMaintenanceRoute = AppMaintenanceRouteImport.update({
+  id: '/maintenance',
+  path: '/maintenance',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNodesRoute = AppNodesRouteImport.update({
+  id: '/nodes',
+  path: '/nodes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPilotPlanRoute = AppPilotPlanRouteImport.update({
+  id: '/pilot-plan',
+  path: '/pilot-plan',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRiskIntelligenceRoute = AppRiskIntelligenceRouteImport.update({
+  id: '/risk-intelligence',
+  path: '/risk-intelligence',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-model': typeof AppAiModelRoute
+  '/alerts': typeof AppAlertsRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/cameras': typeof AppCamerasRoute
+  '/corridor-map': typeof AppCorridorMapRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/driver-warning': typeof AppDriverWarningRoute
+  '/help': typeof AppHelpRoute
+  '/hotspots': typeof AppHotspotsRoute
+  '/incidents': typeof AppIncidentsRoute
+  '/live-camera': typeof AppLiveCameraRoute
+  '/maintenance': typeof AppMaintenanceRoute
+  '/nodes': typeof AppNodesRoute
+  '/pilot-plan': typeof AppPilotPlanRoute
+  '/reports': typeof AppReportsRoute
+  '/risk-intelligence': typeof AppRiskIntelligenceRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-model': typeof AppAiModelRoute
+  '/alerts': typeof AppAlertsRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/cameras': typeof AppCamerasRoute
+  '/corridor-map': typeof AppCorridorMapRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/driver-warning': typeof AppDriverWarningRoute
+  '/help': typeof AppHelpRoute
+  '/hotspots': typeof AppHotspotsRoute
+  '/incidents': typeof AppIncidentsRoute
+  '/live-camera': typeof AppLiveCameraRoute
+  '/maintenance': typeof AppMaintenanceRoute
+  '/nodes': typeof AppNodesRoute
+  '/pilot-plan': typeof AppPilotPlanRoute
+  '/reports': typeof AppReportsRoute
+  '/risk-intelligence': typeof AppRiskIntelligenceRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/_app/ai-model': typeof AppAiModelRoute
+  '/_app/alerts': typeof AppAlertsRoute
+  '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/cameras': typeof AppCamerasRoute
+  '/_app/corridor-map': typeof AppCorridorMapRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/driver-warning': typeof AppDriverWarningRoute
+  '/_app/help': typeof AppHelpRoute
+  '/_app/hotspots': typeof AppHotspotsRoute
+  '/_app/incidents': typeof AppIncidentsRoute
+  '/_app/live-camera': typeof AppLiveCameraRoute
+  '/_app/maintenance': typeof AppMaintenanceRoute
+  '/_app/nodes': typeof AppNodesRoute
+  '/_app/pilot-plan': typeof AppPilotPlanRoute
+  '/_app/reports': typeof AppReportsRoute
+  '/_app/risk-intelligence': typeof AppRiskIntelligenceRoute
+  '/_app/settings': typeof AppSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai-model'
+    | '/alerts'
+    | '/analytics'
+    | '/cameras'
+    | '/corridor-map'
+    | '/dashboard'
+    | '/driver-warning'
+    | '/help'
+    | '/hotspots'
+    | '/incidents'
+    | '/live-camera'
+    | '/maintenance'
+    | '/nodes'
+    | '/pilot-plan'
+    | '/reports'
+    | '/risk-intelligence'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-model'
+    | '/alerts'
+    | '/analytics'
+    | '/cameras'
+    | '/corridor-map'
+    | '/dashboard'
+    | '/driver-warning'
+    | '/help'
+    | '/hotspots'
+    | '/incidents'
+    | '/live-camera'
+    | '/maintenance'
+    | '/nodes'
+    | '/pilot-plan'
+    | '/reports'
+    | '/risk-intelligence'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_app/ai-model'
+    | '/_app/alerts'
+    | '/_app/analytics'
+    | '/_app/cameras'
+    | '/_app/corridor-map'
+    | '/_app/dashboard'
+    | '/_app/driver-warning'
+    | '/_app/help'
+    | '/_app/hotspots'
+    | '/_app/incidents'
+    | '/_app/live-camera'
+    | '/_app/maintenance'
+    | '/_app/nodes'
+    | '/_app/pilot-plan'
+    | '/_app/reports'
+    | '/_app/risk-intelligence'
+    | '/_app/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +264,180 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/ai-model': {
+      id: '/_app/ai-model'
+      path: '/ai-model'
+      fullPath: '/ai-model'
+      preLoaderRoute: typeof AppAiModelRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/alerts': {
+      id: '/_app/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AppAlertsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/cameras': {
+      id: '/_app/cameras'
+      path: '/cameras'
+      fullPath: '/cameras'
+      preLoaderRoute: typeof AppCamerasRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/corridor-map': {
+      id: '/_app/corridor-map'
+      path: '/corridor-map'
+      fullPath: '/corridor-map'
+      preLoaderRoute: typeof AppCorridorMapRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/driver-warning': {
+      id: '/_app/driver-warning'
+      path: '/driver-warning'
+      fullPath: '/driver-warning'
+      preLoaderRoute: typeof AppDriverWarningRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/help': {
+      id: '/_app/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof AppHelpRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/hotspots': {
+      id: '/_app/hotspots'
+      path: '/hotspots'
+      fullPath: '/hotspots'
+      preLoaderRoute: typeof AppHotspotsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/incidents': {
+      id: '/_app/incidents'
+      path: '/incidents'
+      fullPath: '/incidents'
+      preLoaderRoute: typeof AppIncidentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/live-camera': {
+      id: '/_app/live-camera'
+      path: '/live-camera'
+      fullPath: '/live-camera'
+      preLoaderRoute: typeof AppLiveCameraRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/maintenance': {
+      id: '/_app/maintenance'
+      path: '/maintenance'
+      fullPath: '/maintenance'
+      preLoaderRoute: typeof AppMaintenanceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/nodes': {
+      id: '/_app/nodes'
+      path: '/nodes'
+      fullPath: '/nodes'
+      preLoaderRoute: typeof AppNodesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pilot-plan': {
+      id: '/_app/pilot-plan'
+      path: '/pilot-plan'
+      fullPath: '/pilot-plan'
+      preLoaderRoute: typeof AppPilotPlanRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/reports': {
+      id: '/_app/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/risk-intelligence': {
+      id: '/_app/risk-intelligence'
+      path: '/risk-intelligence'
+      fullPath: '/risk-intelligence'
+      preLoaderRoute: typeof AppRiskIntelligenceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAiModelRoute: typeof AppAiModelRoute
+  AppAlertsRoute: typeof AppAlertsRoute
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppCamerasRoute: typeof AppCamerasRoute
+  AppCorridorMapRoute: typeof AppCorridorMapRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppDriverWarningRoute: typeof AppDriverWarningRoute
+  AppHelpRoute: typeof AppHelpRoute
+  AppHotspotsRoute: typeof AppHotspotsRoute
+  AppIncidentsRoute: typeof AppIncidentsRoute
+  AppLiveCameraRoute: typeof AppLiveCameraRoute
+  AppMaintenanceRoute: typeof AppMaintenanceRoute
+  AppNodesRoute: typeof AppNodesRoute
+  AppPilotPlanRoute: typeof AppPilotPlanRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppRiskIntelligenceRoute: typeof AppRiskIntelligenceRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAiModelRoute: AppAiModelRoute,
+  AppAlertsRoute: AppAlertsRoute,
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppCamerasRoute: AppCamerasRoute,
+  AppCorridorMapRoute: AppCorridorMapRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppDriverWarningRoute: AppDriverWarningRoute,
+  AppHelpRoute: AppHelpRoute,
+  AppHotspotsRoute: AppHotspotsRoute,
+  AppIncidentsRoute: AppIncidentsRoute,
+  AppLiveCameraRoute: AppLiveCameraRoute,
+  AppMaintenanceRoute: AppMaintenanceRoute,
+  AppNodesRoute: AppNodesRoute,
+  AppPilotPlanRoute: AppPilotPlanRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppRiskIntelligenceRoute: AppRiskIntelligenceRoute,
+  AppSettingsRoute: AppSettingsRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
