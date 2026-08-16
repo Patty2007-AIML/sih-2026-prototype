@@ -40,18 +40,27 @@ function Help() {
       </Panel>
 
       <div className="space-y-4">
+        <Panel title="Emergency Support">
+          <p className="text-sm font-medium">WildGuard Operations Desk</p>
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+            24×7 support for government wildlife corridor operations.
+          </p>
+          <div className="mt-3">
+            <KeyVal k="Hotline" v="1800-WILD-GUARD" tone="ok" />
+            <KeyVal k="Email" v="support@wildguard.gov.in" />
+          </div>
+          <p className="mt-4 rounded-md border border-warning/40 bg-warning/10 px-3 py-2 text-[11px] leading-relaxed text-warning">
+            Never treat an offline or degraded node as confirmation that the road is clear.
+          </p>
+        </Panel>
         <Panel title="System">
           <KeyVal k="Dashboard build" v="v1.4.0" />
           <KeyVal k="Model build" v="wildguard-v3.2" />
           <KeyVal k="Mode" v="Offline-first" tone="ok" />
           <KeyVal k="Corridor" v="NH-44 pilot" />
         </Panel>
-        <Panel title="Support">
-          <KeyVal k="Control room" v="24 × 7" tone="ok" />
-          <KeyVal k="Field team" v="06:00 – 20:00" />
-          <KeyVal k="Escalation" v="Forest DFO" />
-        </Panel>
       </div>
+
     </div>
   );
 }
